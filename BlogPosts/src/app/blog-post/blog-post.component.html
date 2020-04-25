@@ -1,0 +1,40 @@
+<div class="postsContainer">
+    <div class="filters">
+        <button routerLink="/post" routerLinkActive="active" class="btn addPost"><img alt="" src="/assets/add.png">
+        </button>
+
+        <div id="statusFilter">
+            <select id="status" (change)="filterByStatus($event.target.value)">
+                <option value="all" selected>All</option>
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+            </select>
+        </div>
+
+        <div id="sortFilter">
+            <select id="sort" (change)="filterByOrder($event.target.value)">
+                <option value="0">Ascending</option>
+                <option value="1">Descending</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div *ngFor="let blogPost of blogPosts">
+        <div class="blogPost">
+            <div class="blogRow"><span class="label">Title: </span>{{blogPost.title}}</div>
+            <div class="blogRow"><span class="label">Author: </span>{{blogPost.author}}</div>
+            <div class="blogRow"><span class="label">Tags: </span>{{blogPost.tags}}</div>
+            <div class="blogRow"><span class="label">Status: </span>{{blogPost.status === 0 ? "Inactive" : "Active"}}
+            </div>
+            <div class="blogRow"><span class="label">Date: </span>{{blogPost.date}}</div>
+            <div class="blogRow"><img src="{{blogPost.url}}"></div>
+            <div class="blogText" disabled [innerHTML]="transform(blogPost.text.substr(0,150) + '...')"></div>
+
+            <button [routerLink]='["/post"]' [queryParams]="{id: blogPost.id}" class="btn editPost"><img alt=""
+                                                                                                         src="/assets/edit.png">
+            </button>
+            <button (click)="removePost(blogPost)" class="btn deletePost"><img alt="" src="/assets/delete.png"></button>
+        </div>
+    </div>
+</div>

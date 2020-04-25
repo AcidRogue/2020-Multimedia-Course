@@ -1,0 +1,16 @@
+<div class="postsContainer">
+    <form class="addPostForm" #postForm="ngForm" (submit)="addPost()">
+        <div class="blogRow"><span class="label">Title: </span><input required="" [(ngModel)]="data.title" name="title" type="text"></div>
+        <div class="blogRow"><span class="label">Author: </span><input [(ngModel)]="data.author" name="author" type="text"></div>
+        <div class="blogRow"><span class="label">Tags: </span><input [(ngModel)]="data.tags" name="tags" type="text"></div>
+        <div class="blogRow"><span class="label">Status: </span>
+            <select [(ngModel)]="data.status" name="status">
+                <option value="0">Inactive</option>
+                <option value="1">Active</option>
+            </select></div>
+        <div class="blogRow"><span class="label">URL: </span> <input [(ngModel)]="data.url" name="url" type="text"></div>
+        <div><textarea [(ngModel)]="data.text" name="text" type="text" class="blogText"></textarea></div>
+
+        <button type="submit" class="btn addPost" ><img alt="" src="../../assets/add.png"></button>
+    </form>
+</div>
